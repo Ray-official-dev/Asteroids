@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.ray.mpa": {
+      "version": "https://github.com/Ray-official-dev/MP-Architecture.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4687b7fd8665f05cbf29453b5f4ec008491157bf"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,
