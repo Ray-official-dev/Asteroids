@@ -18,4 +18,18 @@ public static class SceneSwitcher
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
         EditorSceneManager.OpenScene(scenePath);
     }
+    [MenuItem("Scenes/MainMenu")]
+    public static void SwitchToMainMenu()
+    {
+        string scenePath = @"Assets\Game\Resources\Scenes\MainMenu.unity";
+
+        if (!System.IO.File.Exists(scenePath))
+        {
+            Debug.LogError("Scene not found");
+            return;
+        }
+
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+        EditorSceneManager.OpenScene(scenePath);
+    }
 }
