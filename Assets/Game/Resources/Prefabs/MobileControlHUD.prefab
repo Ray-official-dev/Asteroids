@@ -658,3 +658,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveForwardButton: {fileID: 460827550549454665}
   _moveBackwardButton: {fileID: 4874983511065921805}
+  blockControlAreaPercentage: 0.4

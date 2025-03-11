@@ -1,7 +1,6 @@
 ﻿using MPA.Utilits;
 using UnityEngine;
 using Game.Rules;
-using System;
 
 namespace Game.Root
 {
@@ -18,12 +17,13 @@ namespace Game.Root
 
             scenes.Load(Scenes.GAMEPLAY, () =>
             {
-                var entryPoint = GameObject.FindFirstObjectByType<GameplayEntryPoint>();
+                var configs = ProjectContext.Get<SOConfigsProvider>();
+                var config = configs.Get<GameplayConfig>();
 
-                if (entryPoint is null)
-                    throw new NullReferenceException(nameof(entryPoint));
+                var input = GameObject.Instantiate(config.Input);
+                SceneContext.Register<IInputControl>(input);
 
-                entryPoint.Entry(args);
+                var ship = GameObject.Instantiate(config.Ship);
             });
         }
 

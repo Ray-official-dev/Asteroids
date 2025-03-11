@@ -1,0 +1,34 @@
+{
+    "name": "ShipControl",
+    "maps": [
+        {
+            "name": "Ship",
+            "id": "b1964be7-4bd5-4f19-b4e2-944022d053d7",
+            "actions": [
+                {
+                    "name": "Touch",
+                    "type": "Value",
+                    "id": "ccddefa5-dbc3-4c86-afcb-0fe5a2678b7e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fbd6ffa0-eb23-4bd9-9c0b-e0dabbdc9afa",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

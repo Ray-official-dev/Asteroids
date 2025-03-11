@@ -17,6 +17,7 @@ namespace Game.Root
         public void Entry()
         {
             var configs = new SOConfigsProvider();
+            ProjectContext.Register(configs);
 
             ProjectContext.Register(new ScenesLoader());
             ProjectContext.Register(configs.Get<AppSettingsConfig>());
