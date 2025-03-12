@@ -20,7 +20,10 @@ namespace Game.View
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            //destroyed asteroids
+            if (collision.gameObject.TryGetComponent(out Asteroid asteroid))
+                asteroid.TakeDamage(1);
+
+            Destroy(gameObject);
         }
     }
 }

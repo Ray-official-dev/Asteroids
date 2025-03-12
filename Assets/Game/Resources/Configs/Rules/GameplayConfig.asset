@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mobileInput: {fileID: 3692115843186911097, guid: 858c881849c80dc41a688f82158f0d67, type: 3}
   _editorInput: {fileID: 8040372939415070432, guid: 2c5765285f9e2dc4b804a35d25bdd448, type: 3}
-  _ship: {fileID: 893281343703472359, guid: 35849032771e8aa4dbca716cb81e2a55, type: 3}
+  _ship: {fileID: 2946790371532816616, guid: 35849032771e8aa4dbca716cb81e2a55, type: 3}
