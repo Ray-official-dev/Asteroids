@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 451.99997, y: 224}
+  m_AnchoredPosition: {x: 227, y: 167}
   m_SizeDelta: {x: 95.833984, y: 90.784}
   m_Pivot: {x: 0.6237712, y: 0.8135134}
 --- !u!222 &2926076778880440343
@@ -443,7 +443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 224, y: 224}
+  m_AnchoredPosition: {x: 227, y: 314.78}
   m_SizeDelta: {x: 95.833984, y: 90.784}
   m_Pivot: {x: 0.6237712, y: 0.8135134}
 --- !u!222 &9058250424713516336
@@ -658,4 +658,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveForwardButton: {fileID: 460827550549454665}
   _moveBackwardButton: {fileID: 4874983511065921805}
-  blockControlAreaPercentage: 0.4
+  _blockControlAreaWidthPercentage: 0.2
+  _blockControlAreaHeightPercentage: 0.5

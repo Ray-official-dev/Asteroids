@@ -4,17 +4,21 @@ using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-    public class MobileInputControl : MonoBehaviour, IInputControl
+    public class MobileShipInput : MonoBehaviour, IShipInput
     {
         public bool IsMoveForward => _moveForwardButton.IsPressed;
         public bool IsMoveBackward => _moveBackwardButton.IsPressed;
+        public bool IsShoot => _shootButton;
         public Vector3 TouchPosition { get; private set; }
 
         [SerializeField] private ButtonPressedHandler _moveForwardButton;
         [SerializeField] private ButtonPressedHandler _moveBackwardButton;
+        [SerializeField] private ButtonPressedHandler _shootButton;
 
         [Range(0, 1)]
-        [SerializeField] private float blockControlAreaPercentage = 0.8f;
+        [SerializeField] private float _blockControlAreaWidthPercentage = 0.5f;
+        [Range(0, 1)]
+        [SerializeField] private float _blockControlAreaHeightPercentage = 0.5f;
 
         private Rect _blockControlArea;
 
@@ -26,7 +30,7 @@ namespace Game.Input
             if (_moveForwardButton is null)
                 throw new NullReferenceException(nameof(_moveForwardButton));
 
-            _blockControlArea = new Rect(0, 0, Screen.width * blockControlAreaPercentage, Screen.height * blockControlAreaPercentage);
+            _blockControlArea = new Rect(0, 0, Screen.width * _blockControlAreaWidthPercentage, Screen.height * _blockControlAreaHeightPercentage);
         }
 
         private void Update()

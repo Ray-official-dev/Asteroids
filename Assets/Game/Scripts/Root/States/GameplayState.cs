@@ -20,11 +20,22 @@ namespace Game.Root
                 var configs = ProjectContext.Get<SOConfigsProvider>();
                 var config = configs.Get<GameplayConfig>();
 
-                var input = GameObject.Instantiate(config.Input);
-                SceneContext.Register<IInputControl>(input);
+                CreateInput(config);
 
-                var ship = GameObject.Instantiate(config.Ship);
+                GameObject.Instantiate(config.Ship);
             });
+        }
+
+        public void CreateInput(GameplayConfig config)
+        {
+            IShipInput input;
+
+            if (Application.isEditor)
+                input = GameObject.Instantiate(config.EditorInput);
+            else
+                input = GameObject.Instantiate(config.MobileInput);
+
+            SceneContext.Register(input);
         }
 
         public class Arguments : IArguments

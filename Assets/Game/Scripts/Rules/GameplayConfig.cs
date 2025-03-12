@@ -7,10 +7,12 @@ namespace Game.Rules
     [CreateAssetMenu(menuName = Constans.CONFIGS_PATH + "Gameplay Config")]
     public class GameplayConfig : ScriptableObject
     {
-        public MobileInputControl Input => _input;
-        public ShipView Ship => _ship;
+        public MobileShipInput MobileInput => _mobileInput;
+        public EditorShipInput EditorInput => _editorInput;
+        public Mover Ship => _ship;
 
-        [SerializeField] private MobileInputControl _input;
-        [SerializeField] private ShipView _ship;
+        [SerializeField] private MobileShipInput _mobileInput;
+        [SerializeField] private EditorShipInput _editorInput;
+        [SerializeField] private Mover _ship;
     }
 }
