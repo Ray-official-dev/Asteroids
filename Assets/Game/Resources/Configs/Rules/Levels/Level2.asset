@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73892d2d86f1a64cbe19621369477dd, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  _amount: 3
+  _amount: 6
   _maxDistanceForShip: 6
   _minDisanceForShip: 3
