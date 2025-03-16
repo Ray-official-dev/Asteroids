@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-    public class MobileShipInput : MonoBehaviour, IShipInput
+    public class MobileShipInput : MonoBehaviour, IInputShip
     {
         public bool IsMoveForward => _moveForwardButton.IsPressed;
         public bool IsMoveBackward => _moveBackwardButton.IsPressed;

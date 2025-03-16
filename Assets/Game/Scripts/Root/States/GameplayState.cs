@@ -1,6 +1,5 @@
-﻿using MPA.Utilits;
-using UnityEngine;
-using Game.Rules;
+﻿using Game.Rules;
+using MPA.Utilits;
 
 namespace Game.Root
 {
@@ -17,34 +16,18 @@ namespace Game.Root
 
             scenes.Load(Scenes.GAMEPLAY, () =>
             {
-                var configs = ProjectContext.Get<SOConfigsProvider>();
-                var config = configs.Get<GameplayConfig>();
-
-                CreateInput(config);
-
-                GameObject.Instantiate(config.Ship);
+                Gameplay gameplay = new Gameplay();
+                gameplay.Start(args.LevelIndex);
             });
-        }
-
-        public void CreateInput(GameplayConfig config)
-        {
-            IShipInput input;
-
-            if (Application.isEditor)
-                input = GameObject.Instantiate(config.EditorInput);
-            else
-                input = GameObject.Instantiate(config.MobileInput);
-
-            SceneContext.Register(input);
         }
 
         public class Arguments : IArguments
         {
-            public int Level { get; }
+            public int LevelIndex { get; }
 
             public Arguments(int level)
             {
-                Level = level;
+                LevelIndex = level;
             }
         }
     }

@@ -9,10 +9,12 @@ namespace Game.Rules
     {
         public MobileShipInput MobileInput => _mobileInput;
         public EditorShipInput EditorInput => _editorInput;
-        public Mover Ship => _ship;
+        public Ship Ship => _ship;
+        public LevelConfig[] Levels => _levels;
 
         [SerializeField] private MobileShipInput _mobileInput;
         [SerializeField] private EditorShipInput _editorInput;
-        [SerializeField] private Mover _ship;
+        [SerializeField] private Ship _ship;
+        [SerializeField] private LevelConfig[] _levels;
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d41689e70fc614ebb3e8c05bd4b2ff, type: 3}
   m_Name: LargeAsteroid
   m_EditorClassIdentifier: 
-  _nextSpawnAmount: 5
-  _spawnRadius: 1.5
+  _nextSpawnAmount: 3
+  _spawnRadius: 0.5
   _maxHealthPoints: 5
-  _size: 1
-  _nextConfig: {fileID: 0}
+  _size: 0.25
+  _nextConfig: {fileID: 11400000, guid: 9757a4d66d04fa8418fb02f60744d897, type: 2}

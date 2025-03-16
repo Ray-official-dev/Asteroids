@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d41689e70fc614ebb3e8c05bd4b2ff, type: 3}
-  m_Name: SmallAsteroid
+  m_Script: {fileID: 11500000, guid: ff09058c2139506458cb3d3bd72e691f, type: 3}
+  m_Name: AsteroidsSpawnerConfig
   m_EditorClassIdentifier: 
-  _nextSpawnAmount: 0
-  _spawnRadius: 0.5
-  _maxHealthPoints: 1
-  _size: 0.15
-  _nextConfig: {fileID: 0}
+  _prefab: {fileID: 2002873365448586688, guid: a5a87ca566f549441942088b7acebc9d, type: 3}
+  _configs:
+  - {fileID: 11400000, guid: 96359b44168ae5c4ca70f5998d35cd63, type: 2}

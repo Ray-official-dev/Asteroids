@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d41689e70fc614ebb3e8c05bd4b2ff, type: 3}
   m_Name: MediumAsteroid
   m_EditorClassIdentifier: 
-  _nextSpawnAmount: 5
-  _spawnRadius: 1.5
+  _nextSpawnAmount: 2
+  _spawnRadius: 0.5
   _maxHealthPoints: 3
-  _size: 0.5
-  _nextConfig: {fileID: 0}
+  _size: 0.2
+  _nextConfig: {fileID: 11400000, guid: e32cdc06a8841524794f074738ed93a7, type: 2}

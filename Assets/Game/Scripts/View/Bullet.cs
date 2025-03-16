@@ -6,11 +6,13 @@ namespace Game.View
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private float _speed;
+        [SerializeField] private float _lifeTime;
         private Rigidbody2D _rigidbody;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            Destroy(gameObject, _lifeTime);
         }
 
         private void Update()

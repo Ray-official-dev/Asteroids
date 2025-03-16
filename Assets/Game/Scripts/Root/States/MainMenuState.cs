@@ -15,7 +15,7 @@ namespace Game.Root
             var appSettings = ProjectContext.Get<AppSettingsConfig>();
             appSettings.Apply();
 
-            IArguments args = new GameplayState.Arguments(1);
+            IArguments args = new GameplayState.Arguments(0);
             scenes.TryLoad(Scenes.MAINMENU, () => _stateMachine.EnterIn<GameplayState>(args));
         }
     }

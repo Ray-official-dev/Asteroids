@@ -6,7 +6,7 @@ namespace Game.View
 {
     public class Shooter : MonoBehaviour
     {
-        private IShipInput _input;
+        private IInputShip _input;
 
         [Tooltip("In seconds")]
         [SerializeField] private float _fireCooldown;
@@ -17,7 +17,7 @@ namespace Game.View
 
         private void Awake()
         {
-            _input = Context.Get<IShipInput>();
+            _input = Context.Get<IInputShip>();
         }
 
         private void Update()

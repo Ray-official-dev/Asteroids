@@ -6,7 +6,7 @@ namespace Game.View
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        private IShipInput _input;
+        private IInputShip _input;
         private Rigidbody2D _rigidbody;
 
         [SerializeField] private float _moveForce;
@@ -15,7 +15,7 @@ namespace Game.View
 
         private void Awake()
         {
-            _input = Context.Get<IShipInput>();
+            _input = Context.Get<IInputShip>();
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 

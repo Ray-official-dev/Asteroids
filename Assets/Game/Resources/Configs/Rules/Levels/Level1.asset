@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d41689e70fc614ebb3e8c05bd4b2ff, type: 3}
-  m_Name: SmallAsteroid
+  m_Script: {fileID: 11500000, guid: e73892d2d86f1a64cbe19621369477dd, type: 3}
+  m_Name: Level1
   m_EditorClassIdentifier: 
-  _nextSpawnAmount: 0
-  _spawnRadius: 0.5
-  _maxHealthPoints: 1
-  _size: 0.15
-  _nextConfig: {fileID: 0}
+  _amount: 3
+  _maxDistanceForShip: 6
+  _minDisanceForShip: 3

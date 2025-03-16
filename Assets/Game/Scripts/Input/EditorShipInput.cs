@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-    public class EditorShipInput : MonoBehaviour, IShipInput
+    public class EditorShipInput : MonoBehaviour, IInputShip
     {
         public Vector3 TouchPosition { get; private set; }
 

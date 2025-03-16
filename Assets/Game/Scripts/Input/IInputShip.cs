@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IShipInput
+public interface IInputShip
 {
     public Vector3 TouchPosition { get; }
     public bool IsMoveForward { get; }

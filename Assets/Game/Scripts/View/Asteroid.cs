@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.View
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : MonoBehaviour
     {
+        public event Action<Asteroid> AsteroidsSpawned;
+        public event Action<Asteroid> Destroying;
+
         [SerializeField] private AsteroidConfig _config;
         private int _healthPoints;
 
@@ -24,24 +28,28 @@ namespace Game.View
             _healthPoints -= damage;
 
             if (_healthPoints <= 0)
+            {
+                if (_config.NextSpawnAmount > 0)
+                    SpawnAsteroids();
+
                 Destroy();
+            }
         }
 
-        private void Destroy()
+        public void Destroy()
         {
-            if (_config.NextSpawnAmount > 0)
-                SpawnAsteroids();
-
+            Destroying?.Invoke(this);
             Destroy(gameObject);
         }
 
-        protected virtual void SpawnAsteroids()
+        private void SpawnAsteroids()
         {
             for (int i = 0; i < _config.NextSpawnAmount; i++)
             {
                 Vector3 spawnPosition = GetSpawnPosition();
                 Asteroid newAsteroid = Instantiate(this, spawnPosition, Quaternion.identity);
                 newAsteroid.Construct(_config.NextConfig);
+                AsteroidsSpawned?.Invoke(newAsteroid);
             }
         }
 
