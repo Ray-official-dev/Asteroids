@@ -31,7 +31,7 @@ namespace Game.Rules
         private void InstallConfigs()
         {
             var configs = ProjectContext.Get<SOConfigsProvider>();
-            _config = configs.Get<GameplayConfig>();
+            _config = ProjectContext.Get<GameplayConfig>();
 
             SceneContext.Register(configs.Get<AsteroidsSpawnerConfig>());
         }
@@ -72,7 +72,7 @@ namespace Game.Rules
             if (_shipInput is not null)
                 return;
 
-            if (Application.isEditor)
+            if (GameSettingsWindow.IsEditorInput)
                 _shipInput = Object.Instantiate(_config.EditorInput);
             else
                 _shipInput = Object.Instantiate(_config.MobileInput);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.View;
 using MPA.Utilits;
 using UnityEngine;
 
@@ -16,11 +17,13 @@ namespace Game.Root
 
         public void Entry()
         {
-            var configs = new SOConfigsProvider();
-            ProjectContext.Register(configs);
+            ProjectContext.Register(new SOConfigsProvider());
+
+            var configsInstaller = new ProjectConfigsInstaller();
+            configsInstaller.Install();
 
             ProjectContext.Register(new ScenesLoader());
-            ProjectContext.Register(configs.Get<AppSettingsConfig>());
+            ProjectContext.Register(new Storage());
 
             var game = new StateMachine();
 

@@ -4,6 +4,20 @@ using UnityEngine;
 
 public static class SceneSwitcher
 {
+    [MenuItem("Scenes/Background")]
+    public static void SwitchToBackground()
+    {
+        string scenePath = @"Assets\Game\Resources\Scenes\Background.unity";
+
+        if (!System.IO.File.Exists(scenePath))
+        {
+            Debug.LogError("Scene not found");
+            return;
+        }
+
+        EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+        EditorSceneManager.OpenScene(scenePath);
+    }
     [MenuItem("Scenes/Gameplay")]
     public static void SwitchToGameplay()
     {

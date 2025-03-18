@@ -4,19 +4,35 @@ namespace Game.Root
 {
     public class MainMenuState : State
     {
+        private ScenesLoader _scenes;
+
         public MainMenuState(StateMachine stateMachine) : base(stateMachine)
         {
+
         }
 
         public override void Enter()
         {
-            var scenes = ProjectContext.Get<ScenesLoader>();
+            _scenes = ProjectContext.Get<ScenesLoader>();
+            ApplySettings();
 
+            _scenes.TryLoad(Scenes.MAINMENU, () =>
+            {
+                var menu = new MainMenu();
+                menu.EnterGameplayRequested += OnEnterGameplayRequested;
+                menu.Create();
+            });
+        }
+
+        private void ApplySettings()
+        {
             var appSettings = ProjectContext.Get<AppSettingsConfig>();
             appSettings.Apply();
+        }
 
-            IArguments args = new GameplayState.Arguments(0);
-            scenes.TryLoad(Scenes.MAINMENU, () => _stateMachine.EnterIn<GameplayState>(args));
+        private void OnEnterGameplayRequested(int level)
+        {
+            _stateMachine.EnterIn<GameplayState>(new GameplayState.Arguments(level));
         }
     }
 }
