@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Game.Rules
+namespace Game
 {
     public class GameSettingsWindow : EditorWindow
     {

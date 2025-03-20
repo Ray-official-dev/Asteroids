@@ -2,7 +2,7 @@
 using MPA.Utilits;
 using UnityEngine;
 
-namespace Game.Rules
+namespace Game.GameplayRules
 {
     public class Gameplay
     {

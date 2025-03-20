@@ -3,7 +3,7 @@ using Game.View;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Game.Rules
+namespace Game.GameplayRules
 {
     public class AsteroidsSpawner
     {

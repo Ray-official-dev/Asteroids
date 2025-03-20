@@ -2,7 +2,7 @@
 
 namespace Game.View
 {
-    public abstract class Panel : MPA.View
+    public abstract class Menu : MPA.View
     {
         [SerializeField] GameObject _source;
 

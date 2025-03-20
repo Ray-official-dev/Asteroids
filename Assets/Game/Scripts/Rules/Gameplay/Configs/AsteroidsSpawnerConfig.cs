@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Game.View;
 
-namespace Game.Rules
+namespace Game.GameplayRules
 {
     [CreateAssetMenu(menuName = Constans.CONFIGS_PATH + "Asteroids Spawner Config")]
     public class AsteroidsSpawnerConfig : ScriptableObject

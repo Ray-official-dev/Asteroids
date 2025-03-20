@@ -2,7 +2,7 @@
 using Game.View;
 using UnityEngine;
 
-namespace Game.Rules
+namespace Game.GameplayRules
 {
     [CreateAssetMenu(menuName = Constans.CONFIGS_PATH + "Gameplay Config")]
     public class GameplayConfig : ScriptableObject

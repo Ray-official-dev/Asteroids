@@ -1,5 +1,5 @@
 ﻿using System;
-using Game.Rules;
+using Game.GameplayRules;
 using MPA.Utilits;
 using TMPro;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Game.View
 {
-    public class LevelSelectionPanel : Panel
+    public class LevelSelectionMenu : Menu
     {
         public event Action<int> EnterGameplayRequested;
 

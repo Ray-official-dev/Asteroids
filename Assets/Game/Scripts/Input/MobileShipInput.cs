@@ -8,7 +8,7 @@ namespace Game.Input
     {
         public bool IsMoveForward => _moveForwardButton.IsPressed;
         public bool IsMoveBackward => _moveBackwardButton.IsPressed;
-        public bool IsShoot => _shootButton;
+        public bool IsShoot => _shootButton.IsPressed;
         public Vector3 TouchPosition { get; private set; }
 
         [SerializeField] private ButtonPressedHandler _moveForwardButton;

@@ -1,21 +1,34 @@
 ﻿using System;
+using Game.View;
 using MPA.Utilits;
 using UnityEngine;
 
-namespace Game.Root
+namespace Game.MainMenuRules
 {
     public class MainMenu
     {
         public event Action<int> EnterGameplayRequested;
 
+        private SceneReferences _references;
+
+        private LevelSelectionMenu _levelSelectionMenu => _references.LevelsSelectionMenu;
+        private FirstMenu _firstMenu => _references.FirstMenu;
+
         public void Create()
         {
             var lifecycle = new Lifecycle();
 
-            var levelsMenu = GameObject.FindFirstObjectByType<MainMenuSceneReferences>().LevelsPanel;
-            levelsMenu.EnterGameplayRequested += OnEnterGameplayRequested;
+            _references = GameObject.FindFirstObjectByType<SceneReferences>();
 
-            lifecycle.Add(levelsMenu);
+            if (_references is null)
+                throw new NullReferenceException(nameof(_references));
+
+            _levelSelectionMenu.EnterGameplayRequested += OnEnterGameplayRequested;
+
+            _firstMenu.Show();
+            _levelSelectionMenu.Hide();
+
+            lifecycle.Add(_levelSelectionMenu);
             lifecycle.Run();
         }
 

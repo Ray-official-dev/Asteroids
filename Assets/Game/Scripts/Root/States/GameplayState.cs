@@ -1,4 +1,4 @@
-﻿using Game.Rules;
+﻿using Game.GameplayRules;
 using MPA.Utilits;
 
 namespace Game.Root

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Game.View;
 
-namespace Game.Rules
+namespace Game.GameplayRules
 {
     public class AsteroidsContainer
     {
