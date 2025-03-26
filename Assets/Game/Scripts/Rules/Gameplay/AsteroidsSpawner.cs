@@ -5,9 +5,13 @@ using Object = UnityEngine.Object;
 
 namespace Game.GameplayRules
 {
-    public class AsteroidsSpawner
+    public class AsteroidsSpawner : IReadOnlyAsteroidsSpawner
     {
         public event Action<Asteroid> Spawned;
+
+        public event Action<int> AmountSpawned;
+        public event Action<int> AsteroidsAmountChanged;
+
         private AsteroidsSpawnerConfig _config;
 
         public AsteroidsSpawner(AsteroidsSpawnerConfig config)
@@ -17,6 +21,8 @@ namespace Game.GameplayRules
 
         public void Spawn(LevelConfig level)
         {
+            int amount = default;
+
             for (int i = 0; i < level.AsteroidsAmount; i++)
             {
                 float minDistance = level.MinAsteroidsDistanceForShip; // Мінімальна відстань від корабля
@@ -32,7 +38,11 @@ namespace Game.GameplayRules
                 Asteroid asteroid = Object.Instantiate(_config.Prefab, randomPosition, randomRotation);
                 asteroid.Construct(_config.Configs[0]);
                 Spawned?.Invoke(asteroid);
+
+                amount++;
             }
+
+            AmountSpawned?.Invoke(amount);
         }
     }
 }

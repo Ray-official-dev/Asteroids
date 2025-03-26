@@ -17,8 +17,14 @@ namespace Game.Root
             scenes.Load(Scenes.GAMEPLAY, () =>
             {
                 Gameplay gameplay = new Gameplay();
-                gameplay.Start(args.LevelIndex);
+                gameplay.MainMenuEnterRequested += OnMainMenuEnterRequested;
+                gameplay.Run(args.LevelIndex);
             });
+        }
+
+        private void OnMainMenuEnterRequested()
+        {
+            _stateMachine.EnterIn<MainMenuState>();
         }
 
         public class Arguments : IArguments

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9d365993d908b419118e2a92a47054, type: 3}
   m_Name: GameplayConfig
   m_EditorClassIdentifier: 
+  _userInterface: {fileID: 5470581950717261010, guid: d9e18a5079923ee4386705426d65ab55, type: 3}
   _mobileInput: {fileID: 3692115843186911097, guid: 858c881849c80dc41a688f82158f0d67, type: 3}
   _editorInput: {fileID: 8040372939415070432, guid: 2c5765285f9e2dc4b804a35d25bdd448, type: 3}
   _ship: {fileID: 8495411790635418979, guid: 35849032771e8aa4dbca716cb81e2a55, type: 3}
