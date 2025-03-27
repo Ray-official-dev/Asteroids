@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace Game.Input
 {
@@ -14,14 +15,8 @@ namespace Game.Input
         [SerializeField] private ButtonPressedHandler _moveForwardButton;
         [SerializeField] private ButtonPressedHandler _moveBackwardButton;
         [SerializeField] private ButtonPressedHandler _shootButton;
-
-        [Range(0, 1)]
-        [SerializeField] private float _blockControlAreaWidthPercentage = 0.5f;
-        [Range(0, 1)]
-        [SerializeField] private float _blockControlAreaHeightPercentage = 0.5f;
-
-        private Rect _blockControlArea;
-
+        [SerializeField] private TouchHandler _touchZone;
+      
         private void Awake()
         {
             if (_moveBackwardButton is null)
@@ -29,34 +24,18 @@ namespace Game.Input
 
             if (_moveForwardButton is null)
                 throw new NullReferenceException(nameof(_moveForwardButton));
-
-            _blockControlArea = new Rect(0, 0, Screen.width * _blockControlAreaWidthPercentage, Screen.height * _blockControlAreaHeightPercentage);
         }
 
         private void Update()
         {
-            if (Touchscreen.current is null)
-                return;
-
-            var touch = Touchscreen.current.primaryTouch;
             TouchPosition = Vector3.zero;
 
-            if (!touch.press.isPressed)
+            if (!_touchZone.IsTouched)
                 return;
 
-            var position = touch.position.ReadValue();
-
-            if (IsTouchInBlockControlArea(position))
-                return;
-
+            var position = _touchZone.TouchPosition;
             var worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(position.x, position.y, 10));
-
             TouchPosition = worldPosition;
-        }
-
-        private bool IsTouchInBlockControlArea(Vector2 touchPosition)
-        {
-            return _blockControlArea.Contains(touchPosition);
         }
     }
 }

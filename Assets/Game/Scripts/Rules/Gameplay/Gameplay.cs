@@ -23,7 +23,7 @@ namespace Game.GameplayRules
 
         private AsteroidsContainer _asteroidsContainer;
         private AsteroidsSpawner _asteroidsSpawner;
-        private View.GameplayUI _userInterface;
+        private GameplayUI _userInterface;
         private GameplayConfig _config;
         private Lifecycle _lifecycle;
         private Ship _ship;
