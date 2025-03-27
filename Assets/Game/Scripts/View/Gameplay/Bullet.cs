@@ -3,19 +3,19 @@
 namespace Game.View
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Bullet : MonoBehaviour
+    public class Bullet : MPA.View
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _lifeTime;
         private Rigidbody2D _rigidbody;
 
-        private void Awake()
+        public override void Initialize()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             Destroy(gameObject, _lifeTime);
         }
 
-        private void Update()
+        public override void OnTick()
         {
             _rigidbody.linearVelocity = transform.up * _speed * Time.deltaTime;
         }

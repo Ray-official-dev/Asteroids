@@ -3,13 +3,19 @@ using Game.View;
 using MPA.Utilits;
 using Object = UnityEngine.Object;
 using Debug = UnityEngine.Debug;
+using UnityEngine;
 
 namespace Game.GameplayRules
 {
     public class Gameplay //можна використати стейт машину для зменшення осей змін, однак гра мала та працюю над нею я один, тому це буде не раціональною витратою часу
     {
         public event Action MainMenuEnterRequested;
-        public float CurrentRoundTime => _roundTimer.CurrentTime;
+
+        public Lifecycle Lifecycle => _lifecycle;
+        public AsteroidsContainer AsteroidsContainer => _asteroidsContainer;
+        public AsteroidsSpawner AsteroidsSpawner => _asteroidsSpawner;
+        public CountdownTimer RoundTimer => _roundTimer;
+
         private LevelConfig _currentLevel => _config.Levels[_levelIndex];
 
         private IInputShip _shipInput;
@@ -17,33 +23,46 @@ namespace Game.GameplayRules
 
         private AsteroidsContainer _asteroidsContainer;
         private AsteroidsSpawner _asteroidsSpawner;
-        private View.Gameplay _userInterface;
+        private View.GameplayUI _userInterface;
         private GameplayConfig _config;
-        private Lifecycle _userInterfaceLifecycle;
+        private Lifecycle _lifecycle;
         private Ship _ship;
 
         private int _levelIndex;
 
         public void Run(int levelIndex)
         {
-            _userInterfaceLifecycle = new Lifecycle();
-            _levelIndex = levelIndex;
+            SceneContext.Register(this);
+
+            _lifecycle = new Lifecycle();
             _roundTimer = new CountdownTimer();
+            _levelIndex = levelIndex;
             _roundTimer.TimerEnded += OnTimeEnded;
 
             InstallConfigs();
 
-            _asteroidsSpawner = new AsteroidsSpawner(Context.Get<AsteroidsSpawnerConfig>());
+            _asteroidsSpawner = new AsteroidsSpawner();
             _asteroidsContainer = new AsteroidsContainer(_asteroidsSpawner);
             _asteroidsContainer.Empty += OnAsteroidsDestroyed;
 
-            InstallDependecies();
+            _lifecycle.Add(_roundTimer);
+            _lifecycle.Run();
 
-            _userInterfaceLifecycle.Add(_roundTimer);
-            _userInterfaceLifecycle.Run();
             CreateLevel();
 
             _roundTimer.Start(_currentLevel.Duration);
+        }
+
+        public void Pause()
+        {
+            _lifecycle.Pause();
+            Time.timeScale = _config.PausedTimeScale;
+        }
+
+        public void Resume()
+        {
+            _lifecycle?.Unpause();
+            Time.timeScale = 1;
         }
 
         private void OnTimeEnded()
@@ -58,13 +77,6 @@ namespace Game.GameplayRules
             _config = ProjectContext.Get<GameplayConfig>();
 
             SceneContext.Register(configs.Get<AsteroidsSpawnerConfig>());
-        }
-
-        private void InstallDependecies()
-        {
-            SceneContext.Register<IReadOnlyAsteroidsContainer>(_asteroidsContainer);
-            SceneContext.Register<IReadOnlyAsteroidsSpawner>(_asteroidsSpawner);
-            SceneContext.Register<IReadOnlyCountdownTimer>(_roundTimer);
         }
 
         private void CreateAsteroids()
@@ -98,7 +110,7 @@ namespace Game.GameplayRules
                 return;
 
             _userInterface = Object.Instantiate(_config.UserInterface);
-            _userInterfaceLifecycle.Add(_userInterface);
+            _lifecycle.Add(_userInterface);
         }
 
         private void TryCreateShip()
@@ -107,6 +119,7 @@ namespace Game.GameplayRules
                 _ship.Delete();
 
             _ship = Object.Instantiate(_config.Ship);
+            _lifecycle.Add(_ship);
         }
 
         private void TryCreateInput()

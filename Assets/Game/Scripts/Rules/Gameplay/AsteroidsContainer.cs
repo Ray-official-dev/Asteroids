@@ -4,13 +4,12 @@ using Game.View;
 
 namespace Game.GameplayRules
 {
-    public class AsteroidsContainer : IReadOnlyAsteroidsContainer
+    public class AsteroidsContainer
     {
         public event Action Empty;
         public event Action<int> AsteroidsAmountChanged;
 
         private List<Asteroid> _asteroids;
-
 
         public AsteroidsContainer(AsteroidsSpawner spawner)
         {
@@ -18,7 +17,6 @@ namespace Game.GameplayRules
             spawner.Spawned += OnSpawned;
         }
    
-
         private void OnSpawned(Asteroid asteroid)
         {
             _asteroids.Add(asteroid);

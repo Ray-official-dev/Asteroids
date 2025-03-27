@@ -1,11 +1,12 @@
 ﻿using System;
 using Game.View;
+using MPA.Utilits;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Game.GameplayRules
 {
-    public class AsteroidsSpawner : IReadOnlyAsteroidsSpawner
+    public class AsteroidsSpawner
     {
         public event Action<Asteroid> Spawned;
 
@@ -13,10 +14,12 @@ namespace Game.GameplayRules
         public event Action<int> AsteroidsAmountChanged;
 
         private AsteroidsSpawnerConfig _config;
+        private Lifecycle _lifecycle;
 
-        public AsteroidsSpawner(AsteroidsSpawnerConfig config)
+        public AsteroidsSpawner()
         {
-            _config = config;
+            _config = Context.Get<AsteroidsSpawnerConfig>();
+            _lifecycle = Context.Get<Gameplay>().Lifecycle;
         }
 
         public void Spawn(LevelConfig level)
@@ -38,6 +41,7 @@ namespace Game.GameplayRules
                 Asteroid asteroid = Object.Instantiate(_config.Prefab, randomPosition, randomRotation);
                 asteroid.Construct(_config.Configs[0]);
                 Spawned?.Invoke(asteroid);
+                _lifecycle.Add(asteroid);
 
                 amount++;
             }

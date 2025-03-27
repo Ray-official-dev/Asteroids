@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Game.View
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Mover : MonoBehaviour
+    public class Mover : MPA.View
     {
         private IInputShip _input;
         private Rigidbody2D _rigidbody;
@@ -13,18 +13,18 @@ namespace Game.View
 
         private const float _moveForceScaler = 100;
 
-        private void Awake()
+        public override void Initialize()
         {
             _input = Context.Get<IInputShip>();
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        private void Update()
+        public override void OnTick()
         {
             Move();
             Rotate();
         }
-
+ 
         private void Rotate()
         {
             var touchPosition = _input.TouchPosition;

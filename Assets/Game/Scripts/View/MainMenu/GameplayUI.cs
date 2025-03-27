@@ -1,39 +1,51 @@
-﻿using Game.GameplayRules;
+﻿using System;
+using Game.GameplayRules;
 using MPA;
 using MPA.Utilits;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.View
 {
-    public class Gameplay : MPA.View
+    public class GameplayUI : MPA.View
     {
         [SerializeField, RequiredReference] TMP_Text _asteroids;
         [SerializeField, RequiredReference] TMP_Text _round;
+        [Space(10)]
+        [SerializeField, RequiredReference] Button _pausedButton;
+        [SerializeField, RequiredReference] Button _resumeButton;
 
-        private IReadOnlyAsteroidsContainer _asteroidsContainer;
-        private IReadOnlyAsteroidsSpawner _asteroidsSpawner;
-        private IReadOnlyCountdownTimer _roundTimer;
-
+        private Gameplay _gameplay;
         private int _asteroidsSpawnedAmount;
         private int _asteroidsCurrentAmount;
 
         public override void Initialize()
         {
-            _asteroidsContainer = Context.Get<IReadOnlyAsteroidsContainer>();
-            _asteroidsSpawner = Context.Get<IReadOnlyAsteroidsSpawner>();
-            _roundTimer = Context.Get<IReadOnlyCountdownTimer>();
+            _gameplay = Context.Get<Gameplay>();
         }
 
         public override void Begin()
         {
-            _asteroidsContainer.AsteroidsAmountChanged += OnAsteroidsAmountChanged;
-            _asteroidsSpawner.AmountSpawned += OnAsteroidsSpawned;
+            _gameplay.AsteroidsContainer.AsteroidsAmountChanged += OnAsteroidsAmountChanged;
+            _gameplay.AsteroidsSpawner.AmountSpawned += OnAsteroidsSpawned;
+            _pausedButton.onClick.AddListener(OnPauseClicked);
+            _resumeButton.onClick.AddListener(OnResumeClicked);
+        }
+
+        private void OnResumeClicked()
+        {
+            _gameplay.Resume();
+        }
+
+        private void OnPauseClicked()
+        {
+            _gameplay.Pause();
         }
 
         public override void OnTick()
         {
-            _round.text = _roundTimer.GetFormattedTime();
+            _round.text = _gameplay.RoundTimer.GetFormattedTime();
         }
 
         private void OnAsteroidsSpawned(int value)

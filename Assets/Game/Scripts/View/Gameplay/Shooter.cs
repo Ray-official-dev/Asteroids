@@ -1,10 +1,11 @@
 ﻿using System;
+using Game.GameplayRules;
 using MPA.Utilits;
 using UnityEngine;
 
 namespace Game.View
 {
-    public class Shooter : MonoBehaviour
+    public class Shooter : MPA.View
     {
         private IInputShip _input;
 
@@ -12,15 +13,17 @@ namespace Game.View
         [SerializeField] private float _fireCooldown;
         [SerializeField] private Transform _bulletPoint;
         [SerializeField] private Bullet _bulletPrefab;
+        private Lifecycle _lifecycle;
 
         private float _timeSinceLastFire;
 
-        private void Awake()
+        public override void Initialize()
         {
             _input = Context.Get<IInputShip>();
+            _lifecycle = Context.Get<Gameplay>().Lifecycle;
         }
 
-        private void Update()
+        public override void OnTick()
         {
             _timeSinceLastFire += Time.deltaTime;
 
@@ -36,7 +39,8 @@ namespace Game.View
 
         private void Shoot()
         {
-            Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation);
+            var bullet = Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation);
+            _lifecycle.Add(bullet);
         }
     }
 }

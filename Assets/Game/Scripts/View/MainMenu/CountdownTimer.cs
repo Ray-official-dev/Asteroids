@@ -3,7 +3,7 @@ using MPA.Utilits;
 
 namespace Game.View
 {
-    public class CountdownTimer : IReadOnlyCountdownTimer, ITickable
+    public class CountdownTimer : ITickable
     {
         public event Action TimerEnded;
         public float CurrentTime { get; private set; }

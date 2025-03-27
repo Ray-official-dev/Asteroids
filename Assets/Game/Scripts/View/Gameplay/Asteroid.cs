@@ -1,26 +1,30 @@
 ﻿using System;
+using Game.GameplayRules;
+using MPA.Utilits;
 using UnityEngine;
 
 namespace Game.View
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Asteroid : MonoBehaviour
+    public class Asteroid : MPA.View
     {
         public event Action<Asteroid> AsteroidsSpawned;
         public event Action<Asteroid> Destroying;
 
         [SerializeField] private AsteroidConfig _config;
         private int _healthPoints;
-
-        private void Start()
-        {
-            transform.localScale = Vector3.one * _config.Size;
-            _healthPoints = _config.MaxHealthPoints;
-        }
+        private Lifecycle _lifecycle;
 
         public void Construct(AsteroidConfig config)
         {
             _config = config;
+            _lifecycle = Context.Get<Gameplay>().Lifecycle;
+        }
+
+        public override void Begin()
+        {
+            transform.localScale = Vector3.one * _config.Size;
+            _healthPoints = _config.MaxHealthPoints;
         }
 
         public void TakeDamage(int damage)
@@ -50,6 +54,7 @@ namespace Game.View
                 Asteroid newAsteroid = Instantiate(this, spawnPosition, Quaternion.identity);
                 newAsteroid.Construct(_config.NextConfig);
                 AsteroidsSpawned?.Invoke(newAsteroid);
+                _lifecycle.Add(newAsteroid);
             }
         }
 
