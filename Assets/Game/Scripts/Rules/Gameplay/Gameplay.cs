@@ -27,6 +27,7 @@ namespace Game.GameplayRules
         private GameplayConfig _config;
         private Lifecycle _lifecycle;
         private Ship _ship;
+        private Storage _storage;
 
         private int _levelIndex;
 
@@ -34,6 +35,7 @@ namespace Game.GameplayRules
         {
             SceneContext.Register(this);
 
+            _storage = ProjectContext.Get<Storage>();
             _lifecycle = new Lifecycle();
             _roundTimer = new CountdownTimer();
             _levelIndex = levelIndex;
@@ -76,6 +78,7 @@ namespace Game.GameplayRules
             var configs = ProjectContext.Get<SOConfigsProvider>();
             _config = ProjectContext.Get<GameplayConfig>();
 
+
             SceneContext.Register(configs.Get<AsteroidsSpawnerConfig>());
         }
 
@@ -92,6 +95,7 @@ namespace Game.GameplayRules
         private void NextLevel()
         {
             _levelIndex++;
+            _storage.SaveLastLevel(_levelIndex);
             _roundTimer.Start(_currentLevel.Duration);
             CreateLevel();
         }
