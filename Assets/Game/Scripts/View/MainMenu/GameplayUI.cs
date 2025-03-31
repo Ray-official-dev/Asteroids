@@ -10,11 +10,14 @@ namespace Game.View
 {
     public class GameplayUI : MPA.View
     {
+        public event Action EnterInMainMenuRequested;
+
         [SerializeField, RequiredReference] TMP_Text _asteroids;
         [SerializeField, RequiredReference] TMP_Text _round;
         [Space(10)]
         [SerializeField, RequiredReference] Button _pausedButton;
         [SerializeField, RequiredReference] Button _resumeButton;
+        [SerializeField, RequiredReference] Button _returnButton;
 
         private Gameplay _gameplay;
         private int _asteroidsSpawnedAmount;
@@ -31,6 +34,12 @@ namespace Game.View
             _gameplay.AsteroidsSpawner.AmountSpawned += OnAsteroidsSpawned;
             _pausedButton.onClick.AddListener(OnPauseClicked);
             _resumeButton.onClick.AddListener(OnResumeClicked);
+            _returnButton.onClick.AddListener(OnReturnClicked);
+        }
+
+        private void OnReturnClicked()
+        {
+            _gameplay.ReturnInMainMenu();
         }
 
         private void OnResumeClicked()

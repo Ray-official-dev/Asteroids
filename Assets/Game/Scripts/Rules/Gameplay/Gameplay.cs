@@ -134,5 +134,10 @@ namespace Game.GameplayRules
 
             SceneContext.Register(_shipInput);
         }
+
+        public void ReturnInMainMenu()
+        {
+            MainMenuEnterRequested?.Invoke();
+        }
     }
 }

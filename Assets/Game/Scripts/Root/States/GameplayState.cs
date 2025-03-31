@@ -1,5 +1,6 @@
 ﻿using Game.GameplayRules;
 using MPA.Utilits;
+using UnityEngine;
 
 namespace Game.Root
 {
@@ -20,6 +21,11 @@ namespace Game.Root
                 gameplay.MainMenuEnterRequested += OnMainMenuEnterRequested;
                 gameplay.Run(args.LevelIndex);
             });
+        }
+
+        public override void Exit()
+        {
+            Time.timeScale = 1;
         }
 
         private void OnMainMenuEnterRequested()
