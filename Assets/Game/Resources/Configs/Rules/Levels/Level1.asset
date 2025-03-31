@@ -15,4 +15,4 @@ MonoBehaviour:
   _amount: 3
   _maxDistanceForShip: 6
   _minDisanceForShip: 3
-  _duration: 15
+  _duration: 60

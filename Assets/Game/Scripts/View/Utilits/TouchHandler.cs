@@ -2,26 +2,29 @@
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class TouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+namespace Utilits
 {
-    public bool IsTouched { get; private set; }
-    public Vector2 TouchPosition { get; private set; }
-
-    public void OnPointerDown(PointerEventData eventData)
+    public class TouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        IsTouched = true;
-    }
+        public bool IsTouched { get; private set; }
+        public Vector2 TouchPosition { get; private set; }
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        IsTouched = false;
-    }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            IsTouched = true;
+        }
 
-    private void Update()
-    {
-        if (!IsTouched)
-            return;
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            IsTouched = false;
+        }
 
-        TouchPosition = Touchscreen.current.primaryTouch.position.ReadValue(); // Отримуємо позицію пальця
+        private void Update()
+        {
+            if (!IsTouched)
+                return;
+
+            TouchPosition = Touchscreen.current.primaryTouch.position.ReadValue(); // Отримуємо позицію пальця
+        }
     }
 }

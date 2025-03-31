@@ -1,17 +1,20 @@
 ﻿using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class ButtonPressedHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+namespace Utilits
 {
-    public bool IsPressed { get; private set; }
-
-    public void OnPointerDown(PointerEventData eventData)
+    public class ButtonPressedHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        IsPressed = true;
-    }
+        public bool IsPressed { get; private set; }
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        IsPressed = false;
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            IsPressed = true;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            IsPressed = false;
+        }
     }
 }

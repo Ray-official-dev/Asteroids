@@ -1,11 +1,14 @@
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(TMP_Text))]
-public class AppVersionShower : MonoBehaviour
+namespace Utilits
 {
-    private void Awake()
+    [RequireComponent(typeof(TMP_Text))]
+    public class AppVersionShower : MonoBehaviour
     {
-        GetComponent<TMP_Text>().text = Application.version;
+        private void Awake()
+        {
+            GetComponent<TMP_Text>().text = Application.version;
+        }
     }
 }
