@@ -120,6 +120,12 @@ namespace Game.GameplayRules
 
             _ship = Object.Instantiate(_config.Ship);
             _lifecycle.Add(_ship);
+            _ship.Destroying += OnShipDestroying;
+        }
+
+        private void OnShipDestroying()
+        {
+            MainMenuEnterRequested?.Invoke();
         }
 
         private void TryCreateInput()

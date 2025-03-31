@@ -1,12 +1,24 @@
-﻿using MPA;
+﻿using System;
+using MPA;
 using UnityEngine;
 
 namespace Game.View
 {
     public class Ship : MPA.View
     {
+        public event Action Destroying;
+
         [SerializeField, RequiredReference] Mover _mover;
         [SerializeField, RequiredReference] Shooter _shooter;
+
+        public void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!collision.collider.TryGetComponent(out Asteroid _))
+                return;
+
+            Destroying?.Invoke();
+            Destroy(gameObject);
+        }
 
         public override void Initialize()
         {
