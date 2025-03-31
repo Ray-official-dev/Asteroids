@@ -14,11 +14,14 @@ namespace Game.View
         [SerializeField] private AsteroidConfig _config;
         private int _healthPoints;
         private Lifecycle _lifecycle;
+        private Rigidbody2D _body;
+        private float _speed;
 
         public void Construct(AsteroidConfig config)
         {
             _config = config;
             _lifecycle = Context.Get<Gameplay>().Lifecycle;
+            _body = GetComponent<Rigidbody2D>();
         }
 
         public override void Begin()
@@ -50,9 +53,12 @@ namespace Game.View
         {
             for (int i = 0; i < _config.NextSpawnAmount; i++)
             {
+                Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+
                 Vector3 spawnPosition = GetSpawnPosition();
                 Asteroid newAsteroid = Instantiate(this, spawnPosition, Quaternion.identity);
                 newAsteroid.Construct(_config.NextConfig);
+                newAsteroid.SetMove(randomDirection, _speed);
                 AsteroidsSpawned?.Invoke(newAsteroid);
                 _lifecycle.Add(newAsteroid);
             }
@@ -63,6 +69,12 @@ namespace Game.View
             Vector3 spawnPosition = transform.position + (UnityEngine.Random.insideUnitSphere * _config.SpawnRadius);
             spawnPosition.z = 0;
             return spawnPosition;
+        }
+
+        public void SetMove(Vector2 direction, float speed)
+        {
+            _speed = speed;
+            _body.linearVelocity = direction.normalized * speed;
         }
     }
 }
