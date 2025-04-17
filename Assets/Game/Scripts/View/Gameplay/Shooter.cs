@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Game.GameplayRules;
 using MPA.Utilits;
 using UnityEngine;
@@ -13,14 +13,29 @@ namespace Game.View
         [SerializeField] private float _fireCooldown;
         [SerializeField] private Transform _bulletPoint;
         [SerializeField] private Bullet _bulletPrefab;
-        private Lifecycle _lifecycle;
+        [SerializeField] private int _poolSize = 10;
 
+        private Lifecycle _lifecycle;
         private float _timeSinceLastFire;
+        private Queue<Bullet> _bulletPool;
 
         public override void Initialize()
         {
             _input = Context.Get<IInputShip>();
             _lifecycle = Context.Get<Gameplay>().Lifecycle;
+            InitializePool();
+        }
+
+        private void InitializePool()
+        {
+            _bulletPool = new Queue<Bullet>();
+
+            for (int i = 0; i < _poolSize; i++)
+            {
+                var bullet = Instantiate(_bulletPrefab);
+                bullet.gameObject.SetActive(false);
+                _bulletPool.Enqueue(bullet);
+            }
         }
 
         public override void OnTick()
@@ -39,8 +54,22 @@ namespace Game.View
 
         private void Shoot()
         {
-            var bullet = Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation);
-            _lifecycle.Add(bullet);
+            if (_bulletPool.Count > 0)
+            {
+                var bullet = _bulletPool.Dequeue();
+                bullet.transform.position = _bulletPoint.position;
+                bullet.transform.rotation = _bulletPoint.rotation;
+                _lifecycle.Add(bullet);
+                bullet.Enable();
+                bullet.OnDeactivated += ReturnToPool;
+            }
+        }
+
+        private void ReturnToPool(Bullet bullet)
+        {
+            bullet.OnDeactivated -= ReturnToPool;
+            bullet.Disable();
+            _bulletPool.Enqueue(bullet);
         }
     }
 }
