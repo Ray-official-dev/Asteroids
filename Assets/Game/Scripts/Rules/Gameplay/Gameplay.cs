@@ -137,9 +137,9 @@ namespace Game.GameplayRules
             if (_shipInput is not null)
                 return;
 
-            if (GameSettingsWindow.IsEditorInput)
-                _shipInput = Object.Instantiate(_config.EditorInput);
-            else
+            //if (GameSettingsWindow.IsEditorInput)
+            //    _shipInput = Object.Instantiate(_config.EditorInput);
+            //else
                 _shipInput = Object.Instantiate(_config.MobileInput);
 
             SceneContext.Register(_shipInput);
