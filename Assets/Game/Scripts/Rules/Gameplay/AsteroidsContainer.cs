@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.View;
+using MPA.Utilits;
 
 namespace Game.GameplayRules
 {
@@ -11,8 +12,11 @@ namespace Game.GameplayRules
 
         private List<Asteroid> _asteroids;
 
+        private Storage _storage;
+
         public AsteroidsContainer(AsteroidsSpawner spawner)
         {
+            _storage = Context.Get<Storage>();
             _asteroids = new List<Asteroid>();
             spawner.Spawned += OnSpawned;
         }
@@ -27,6 +31,7 @@ namespace Game.GameplayRules
 
         private void OnDestroying(Asteroid asteroid)
         {
+            _storage.AddDestroyedAsteroid();
             _asteroids.Remove(asteroid);
             AsteroidsAmountChanged?.Invoke(_asteroids.Count);
 
