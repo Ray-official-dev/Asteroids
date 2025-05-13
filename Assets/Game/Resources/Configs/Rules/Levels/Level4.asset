@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e73892d2d86f1a64cbe19621369477dd, type: 3}
-  m_Name: Level3
+  m_Name: Level4
   m_EditorClassIdentifier: 
   _maxDistanceForShip: 6
   _minDisanceForShip: 3
-  _minAsteroidsSpeed: 0.5
-  _maxAsteroidsSpeed: 0.6
-  _duration: 180
-  _amount: 6
+  _minAsteroidsSpeed: 0.6
+  _maxAsteroidsSpeed: 0.7
+  _duration: 200
+  _amount: 8

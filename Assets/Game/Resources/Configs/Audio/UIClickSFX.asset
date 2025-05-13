@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _source:
     _clip: {fileID: 8300000, guid: cfcbaaf1623d9ef418ccdd11f16c05df, type: 3}
-    _volume: 0.5
+    _volume: 1
