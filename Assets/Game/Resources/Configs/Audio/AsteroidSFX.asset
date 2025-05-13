@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destroySound:
     _clip: {fileID: 8300000, guid: 04f96e6cad687dd4588c9438ec11d417, type: 3}
-    _volume: 0.3
+    _volume: 0.8

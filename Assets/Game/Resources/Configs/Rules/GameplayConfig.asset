@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c08eb2a2dbe16843b0b81b3c81c9946, type: 2}
   - {fileID: 11400000, guid: bda4908bc9b582545be1a2c6fe1b8485, type: 2}
   _pausedTimeScale: 0.3
+  _gameOverDelay: 1

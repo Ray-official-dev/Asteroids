@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BulletSFX
   m_EditorClassIdentifier: 
   _collision:
-    _clip: {fileID: 0}
-    _volume: 0
+    _clip: {fileID: 8300000, guid: 79fbfbc06c9e1fc448ede84a9e473e97, type: 3}
+    _volume: 0.3

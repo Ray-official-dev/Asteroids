@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed16854f4ffcc7940b9a981a571d0b6d, type: 3}
   m_Name: ShipSFX
   m_EditorClassIdentifier: 
-  _shootSound:
+  _shootSFX:
     _clip: {fileID: 8300000, guid: 9d6ece21685b86748a44ac5424858f9a, type: 3}
-    _volume: 0.1
+    _volume: 0.5
+  _explosionSFX:
+    _clip: {fileID: 8300000, guid: d25e86a3b36fb7246808042e56b1df0c, type: 3}
+    _volume: 1
