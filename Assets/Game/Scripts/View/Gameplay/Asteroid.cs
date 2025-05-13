@@ -1,4 +1,6 @@
 ﻿using System;
+using Game.Audio;
+using Game.Effects;
 using Game.GameplayRules;
 using MPA.Utilits;
 using UnityEngine;
@@ -8,8 +10,8 @@ namespace Game.View
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : MPA.View
     {
-        public event Action<Asteroid> AsteroidsSpawned;
         public event Action<Asteroid> Destroying;
+        public event Action<Asteroid> AsteroidsSpawned;
 
         [SerializeField] private AsteroidConfig _config;
         private int _healthPoints;
@@ -22,6 +24,9 @@ namespace Game.View
             _config = config;
             _lifecycle = Context.Get<Gameplay>().Lifecycle;
             _body = GetComponent<Rigidbody2D>();
+
+            var sfx = new AsteroidSFX(this);
+            var vfx = new AsteroidVFX(this);
         }
 
         public override void Begin()

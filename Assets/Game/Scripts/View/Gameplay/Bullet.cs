@@ -1,6 +1,6 @@
 ﻿using System;
-using Game.GameplayRules;
-using MPA.Utilits;
+using Game.Audio;
+using Game.Effects;
 using UnityEngine;
 using Utilits;
 
@@ -10,24 +10,21 @@ namespace Game.View
     public class Bullet : MPA.View
     {
         public event Action<Bullet> OnDeactivated;
+        public event Action<Collision2D> Collision;
 
         [SerializeField] private float _speed;
         [SerializeField] private float _lifeTime;
         private Timer _timer;
         private Rigidbody2D _rigidbody;
-        private Lifecycle _lifecycle;
-
-        //private void OnDisable()
-        //{
-        //    OnDeactivated?.Invoke(this);
-        //}
 
         public override void Initialize()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _lifecycle = Context.Get<Gameplay>().Lifecycle;
             _timer = new Timer();
             _timer.TimeEnded += Disable;
+
+            var vfx = new BulletVFX(this);
+            var sfx = new BulletSFX(this);
         }
 
         public override void OnTick()
@@ -41,6 +38,7 @@ namespace Game.View
             if (collision.gameObject.TryGetComponent(out Asteroid asteroid))
                 asteroid.TakeDamage(1);
 
+            Collision?.Invoke(collision);
             Disable();
         }
 

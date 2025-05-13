@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Utilits;
 
 namespace Game.Input

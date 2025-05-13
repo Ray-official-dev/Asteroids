@@ -1,4 +1,6 @@
 ﻿using System;
+using Game.Audio;
+using Game.Effects;
 using MPA;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ namespace Game.View
     public class Ship : MPA.View
     {
         public event Action Destroying;
+        public event Action<Vector3, Quaternion> Shooted;
 
         [SerializeField, RequiredReference] Mover _mover;
         [SerializeField, RequiredReference] Shooter _shooter;
@@ -24,6 +27,11 @@ namespace Game.View
         {
             _mover.Initialize();
             _shooter.Initialize();
+
+            _shooter.Shooted += OnShooted;
+
+            var audio = new ShipSFX(this);
+            var effects = new ShipVFX(this);
         }
 
         public override void Begin()
@@ -42,6 +50,11 @@ namespace Game.View
         {
             _mover.OnFixedTick();
             _shooter.OnFixedTick();
+        }
+
+        private void OnShooted(Vector3 pos, Quaternion rot)
+        {
+            Shooted?.Invoke(pos, rot);
         }
 
         public void Delete()

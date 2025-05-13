@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Game.View;
+using Game.Audio;
 using MPA.Utilits;
 using UnityEngine;
 
@@ -18,12 +18,14 @@ namespace Game.Root
         public void Entry()
         {
             ProjectContext.Register(new SOConfigsProvider());
+            ProjectContext.Register(new ResourceProvider());
 
             var configsInstaller = new ProjectConfigsInstaller();
             configsInstaller.Install();
 
             ProjectContext.Register(new ScenesLoader());
             ProjectContext.Register(new Storage());
+            ProjectContext.Register(new AudioClickHandler());
 
             var game = new StateMachine();
 

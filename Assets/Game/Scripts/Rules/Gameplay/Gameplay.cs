@@ -4,6 +4,7 @@ using MPA.Utilits;
 using Object = UnityEngine.Object;
 using Debug = UnityEngine.Debug;
 using UnityEngine;
+using Game.Effects;
 
 namespace Game.GameplayRules
 {
@@ -35,13 +36,16 @@ namespace Game.GameplayRules
         {
             SceneContext.Register(this);
 
-            _storage = ProjectContext.Get<Storage>();
+            var configsInstaller = new ConfigsInstaller();
+            configsInstaller.Install();
+
+            _storage = Context.Get<Storage>();
             _lifecycle = new Lifecycle();
             _roundTimer = new CountdownTimer();
             _levelIndex = levelIndex;
             _roundTimer.TimerEnded += OnTimeEnded;
 
-            InstallConfigs();
+            _config = ProjectContext.Get<GameplayConfig>();
 
             _asteroidsSpawner = new AsteroidsSpawner();
             _asteroidsContainer = new AsteroidsContainer(_asteroidsSpawner);
@@ -71,15 +75,6 @@ namespace Game.GameplayRules
         {
             MainMenuEnterRequested?.Invoke();
             Debug.Log("Time ended");
-        }
-
-        private void InstallConfigs()
-        {
-            var configs = ProjectContext.Get<SOConfigsProvider>();
-            _config = ProjectContext.Get<GameplayConfig>();
-
-
-            SceneContext.Register(configs.Get<AsteroidsSpawnerConfig>());
         }
 
         private void CreateAsteroids()
@@ -137,10 +132,7 @@ namespace Game.GameplayRules
             if (_shipInput is not null)
                 return;
 
-            //if (GameSettingsWindow.IsEditorInput)
-            //    _shipInput = Object.Instantiate(_config.EditorInput);
-            //else
-                _shipInput = Object.Instantiate(_config.MobileInput);
+            _shipInput = Object.Instantiate(_config.MobileInput);
 
             SceneContext.Register(_shipInput);
         }

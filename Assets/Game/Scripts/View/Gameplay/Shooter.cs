@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.GameplayRules;
 using MPA.Utilits;
 using UnityEngine;
@@ -9,9 +10,11 @@ namespace Game.View
     {
         private IInputShip _input;
 
+        public event Action<Vector3, Quaternion> Shooted;
+
         [Tooltip("In seconds")]
         [SerializeField] private float _fireCooldown;
-        [SerializeField] private Transform _bulletPoint;
+        [SerializeField] private Transform _firePoint;
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private int _poolSize = 10;
 
@@ -57,11 +60,13 @@ namespace Game.View
             if (_bulletPool.Count > 0)
             {
                 var bullet = _bulletPool.Dequeue();
-                bullet.transform.position = _bulletPoint.position;
-                bullet.transform.rotation = _bulletPoint.rotation;
+                bullet.transform.position = _firePoint.position;
+                bullet.transform.rotation = _firePoint.rotation;
                 _lifecycle.Add(bullet);
                 bullet.Enable();
                 bullet.OnDeactivated += ReturnToPool;
+
+                Shooted?.Invoke(_firePoint.position, _firePoint.rotation);
             }
         }
 
