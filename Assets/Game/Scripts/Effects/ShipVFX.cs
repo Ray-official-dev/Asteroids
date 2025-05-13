@@ -12,6 +12,12 @@ namespace Game.Effects
         {
             _config = Context.Get<ShipVFXConfig>();
             ship.Shooted += OnShooted;
+            ship.Exploded += OnExploded;
+        }
+
+        private void OnExploded(Ship ship)
+        {
+            _config.Explosion.Play(ship.transform.position, Quaternion.identity);
         }
 
         private void OnShooted(Vector3 position, Quaternion rotation)

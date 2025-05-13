@@ -8,7 +8,7 @@ namespace Game.View
 {
     public class Ship : MPA.View
     {
-        public event Action Destroying;
+        public event Action<Ship> Exploded;
         public event Action<Vector3, Quaternion> Shooted;
 
         [SerializeField, RequiredReference] Mover _mover;
@@ -19,8 +19,7 @@ namespace Game.View
             if (!collision.collider.TryGetComponent(out Asteroid _))
                 return;
 
-            Destroying?.Invoke();
-            Destroy(gameObject);
+            Explode();
         }
 
         public override void Initialize()
@@ -57,8 +56,9 @@ namespace Game.View
             Shooted?.Invoke(pos, rot);
         }
 
-        public void Delete()
+        public void Explode()
         {
+            Exploded?.Invoke(this);
             Destroy(gameObject);
         }
     }

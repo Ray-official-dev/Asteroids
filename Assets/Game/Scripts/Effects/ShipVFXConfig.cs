@@ -6,6 +6,9 @@ namespace Game.Effects
     public class ShipVFXConfig : ScriptableObject
     {
         public VFX Fire => _fire;
+        public VFX Explosion => _exposion;
+
         [SerializeField] private VFX _fire;
+        [SerializeField] private VFX _exposion;
     }
 }

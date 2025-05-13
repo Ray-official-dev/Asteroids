@@ -4,7 +4,6 @@ using MPA.Utilits;
 using Object = UnityEngine.Object;
 using Debug = UnityEngine.Debug;
 using UnityEngine;
-using Game.Effects;
 
 namespace Game.GameplayRules
 {
@@ -100,7 +99,7 @@ namespace Game.GameplayRules
             TryCreateUI();
             CreateAsteroids();
             TryCreateInput();
-            TryCreateShip();
+            CreateShip();
         }
 
         private void TryCreateUI()
@@ -112,19 +111,23 @@ namespace Game.GameplayRules
             _lifecycle.Add(_userInterface);
         }
 
-        private void TryCreateShip()
+        private void CreateShip()
         {
             if (_ship is not null)
-                _ship.Delete();
+                Object.Destroy(_ship.gameObject);
 
             _ship = Object.Instantiate(_config.Ship);
             _lifecycle.Add(_ship);
-            _ship.Destroying += OnShipDestroying;
+            _ship.Exploded += OnShipExploded;
         }
 
-        private void OnShipDestroying()
+        private void OnShipExploded(Ship ship)
         {
-            MainMenuEnterRequested?.Invoke();
+            var timer = new CountdownTimer();
+            timer.Start(_config.GameOverDelay);
+            timer.TimerEnded += ReturnInMainMenu;
+
+            _lifecycle.Add(timer);
         }
 
         private void TryCreateInput()
