@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c948ba25abe344c9ded5c8f5492bda, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f591742133c36f4bad23eac948f7b74, type: 3}
   m_Name: BulletSFXConfig
   m_EditorClassIdentifier: 
-  _collision:
+  _hit:
     _clip: {fileID: 8300000, guid: 79fbfbc06c9e1fc448ede84a9e473e97, type: 3}
     _volume: 0.3

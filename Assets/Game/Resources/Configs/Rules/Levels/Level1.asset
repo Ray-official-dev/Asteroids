@@ -17,4 +17,4 @@ MonoBehaviour:
   _minAsteroidsSpeed: 0.3
   _maxAsteroidsSpeed: 0.6
   _duration: 60
-  _amount: 3
+  _amount: 1

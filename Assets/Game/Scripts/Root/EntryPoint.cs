@@ -23,6 +23,8 @@ namespace Game.Root
             var configsInstaller = new ConfigsInstaller();
             configsInstaller.Install();
 
+            FadeSceneTransition.Install();
+
             ProjectContext.Register(new ScenesLoader());
             ProjectContext.Register(new Storage());
             ProjectContext.Register(new AudioClickHandler());

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f20a923bf86a1e543a3aa7d5cda1911b, type: 3}
+  m_Script: {fileID: 11500000, guid: 095f11797f3b84e4cb0aacbbcecdfdbd, type: 3}
   m_Name: ShipVFXConfig
   m_EditorClassIdentifier: 
   _fire:
