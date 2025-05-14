@@ -20,5 +20,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3fbc0160cba9a8e4a9de3278f7262258, type: 2}
   - {fileID: 11400000, guid: 5c08eb2a2dbe16843b0b81b3c81c9946, type: 2}
   - {fileID: 11400000, guid: bda4908bc9b582545be1a2c6fe1b8485, type: 2}
+  - {fileID: 11400000, guid: ff1cb01662f652546a92bec161bdf411, type: 2}
+  - {fileID: 11400000, guid: fa8eb77fb25dd0f4f80f8f57faef4161, type: 2}
+  - {fileID: 11400000, guid: e4dd29fb912bada4db27bee15d671fc8, type: 2}
+  - {fileID: 11400000, guid: 63ae3d376ce15684d9c888a1d35611ef, type: 2}
+  - {fileID: 11400000, guid: da8a6607305b0a542befa0510e9a52f6, type: 2}
+  - {fileID: 11400000, guid: 4ec3327eed009e64cae801316b7b0e84, type: 2}
+  - {fileID: 11400000, guid: 32eab7e0e50b64a4db70015060285e1a, type: 2}
   _pausedTimeScale: 0.3
   _gameOverDelay: 1

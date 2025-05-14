@@ -10,6 +10,9 @@ namespace Game.GameplayRules
     public class Gameplay //можна використати стейт машину для зменшення осей змін, однак гра мала та працюю над нею я один, тому це буде не раціональною витратою часу
     {
         public event Action MainMenuEnterRequested;
+        public event Action<int> LevelChanged;
+
+        public int CurrentLevel => _levelIndex + 1;
 
         public Lifecycle Lifecycle => _lifecycle;
         public AsteroidsContainer AsteroidsContainer => _asteroidsContainer;
@@ -92,6 +95,7 @@ namespace Game.GameplayRules
             _storage.SaveLastLevel(_levelIndex);
             _roundTimer.Start(_currentLevel.Duration);
             CreateLevel();
+            LevelChanged?.Invoke(CurrentLevel);
         }
 
         private void CreateLevel()

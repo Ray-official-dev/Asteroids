@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxDistanceForShip: 6
   _minDisanceForShip: 3
-  _minAsteroidsSpeed: 1.2
-  _maxAsteroidsSpeed: 1.5
-  _duration: 300
-  _amount: 25
+  _minAsteroidsSpeed: 1.5
+  _maxAsteroidsSpeed: 1.8
+  _duration: 350
+  _amount: 60

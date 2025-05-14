@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7546391727390767523}
   - component: {fileID: 7797032812856167231}
   m_Layer: 5
-  m_Name: AsteroidsText
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100/100
+  m_text: 'LEVEL: {0}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c621eb92b61a374685d825e55a9011a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroids: {fileID: 7797032812856167231}
+  _level: {fileID: 0}
   _round: {fileID: 2527376205232848706}
   _pausedButton: {fileID: 8315186888532297718}
   _resumeButton: {fileID: 750422547994719646}
