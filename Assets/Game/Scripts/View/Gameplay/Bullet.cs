@@ -1,6 +1,6 @@
 ﻿using System;
-using Game.Audio;
-using Game.Effects;
+using Game.SFX;
+using Game.VFX;
 using UnityEngine;
 using Utilits;
 

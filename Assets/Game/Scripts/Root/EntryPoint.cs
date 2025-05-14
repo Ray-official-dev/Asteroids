@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Game.Audio;
+using Game.SFX;
 using MPA.Utilits;
 using UnityEngine;
 
@@ -20,7 +20,7 @@ namespace Game.Root
             ProjectContext.Register(new SOConfigsProvider());
             ProjectContext.Register(new ResourceProvider());
 
-            var configsInstaller = new ProjectConfigsInstaller();
+            var configsInstaller = new ConfigsInstaller();
             configsInstaller.Install();
 
             ProjectContext.Register(new ScenesLoader());

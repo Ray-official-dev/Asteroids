@@ -1,6 +1,6 @@
 ﻿using MPA.Utilits;
-using Game.Effects;
-using Game.Audio;
+using Game.VFX;
+using Game.SFX;
 
 namespace Game.GameplayRules
 {

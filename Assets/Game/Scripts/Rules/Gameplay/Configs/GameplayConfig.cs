@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.GameplayRules
 {
-    [CreateAssetMenu(menuName = Constans.CONFIGS_PATH + "Gameplay Config")]
+    [CreateAssetMenu(menuName = Constans.CONFIGS_PATH + "Gameplay/Rules")]
     public class GameplayConfig : ScriptableObject
     {
         public float PausedTimeScale => _pausedTimeScale;
