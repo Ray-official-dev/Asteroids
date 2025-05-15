@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Game.View
 {
-    public class GameplayUI : MPA.View
+    public class GameplayUI : MPA.View, IPrefab
     {
         public event Action EnterInMainMenuRequested;
 

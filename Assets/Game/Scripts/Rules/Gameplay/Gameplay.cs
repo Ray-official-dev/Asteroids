@@ -4,6 +4,7 @@ using MPA.Utilits;
 using Object = UnityEngine.Object;
 using Debug = UnityEngine.Debug;
 using UnityEngine;
+using Game.Input;
 
 namespace Game.GameplayRules
 {
@@ -32,10 +33,14 @@ namespace Game.GameplayRules
         private Ship _ship;
         private Storage _storage;
 
+        private ResourceProvider _resources;
+
         private int _levelIndex;
 
         public void Run(int levelIndex)
         {
+            _resources = Context.Get<ResourceProvider>();
+
             SceneContext.Register(this);
 
             var configsInstaller = new ConfigsInstaller();
@@ -111,7 +116,7 @@ namespace Game.GameplayRules
             if (_userInterface is not null)
                 return;
 
-            _userInterface = Object.Instantiate(_config.UserInterface);
+            _userInterface = Object.Instantiate(_resources.GetPrefab<GameplayUI>());
             _lifecycle.Add(_userInterface);
         }
 
@@ -120,7 +125,7 @@ namespace Game.GameplayRules
             if (_ship is not null)
                 Object.Destroy(_ship.gameObject);
 
-            _ship = Object.Instantiate(_config.Ship);
+            _ship = Object.Instantiate(_resources.GetPrefab<Ship>());
             _lifecycle.Add(_ship);
             _ship.Exploded += OnShipExploded;
         }
@@ -139,7 +144,7 @@ namespace Game.GameplayRules
             if (_shipInput is not null)
                 return;
 
-            _shipInput = Object.Instantiate(_config.MobileInput);
+            _shipInput = Object.Instantiate(_resources.GetPrefab<MobileShipInput>());
 
             SceneContext.Register(_shipInput);
         }

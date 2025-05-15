@@ -2,11 +2,12 @@
 using Game.SFX;
 using Game.VFX;
 using MPA;
+using MPA.Utilits;
 using UnityEngine;
 
 namespace Game.View
 {
-    public class Ship : MPA.View
+    public class Ship : MPA.View, IPrefab
     {
         public event Action<Ship> Exploded;
         public event Action<Vector3, Quaternion> Shooted;

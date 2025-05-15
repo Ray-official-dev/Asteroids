@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System;
 using Utilits;
+using MPA.Utilits;
 
 namespace Game.Input
 {
-    public class MobileShipInput : MonoBehaviour, IInputShip
+    public class MobileShipInput : MonoBehaviour, IInputShip, IPrefab
     {
         public bool IsMoveForward => _moveForwardButton.IsPressed;
         public bool IsMoveBackward => _moveBackwardButton.IsPressed;
